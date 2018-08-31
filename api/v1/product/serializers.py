@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from data.models import Category
+from data.models import Category, Product
 from django.core.validators import ValidationError
+
 
 class ProductSerializer(serializers.Serializer):
     """ Accepting name, category, code, price and quantity field. """
@@ -17,3 +18,16 @@ class ProductSerializer(serializers.Serializer):
         else:
             raise ValidationError("This is not a valid category.")
 
+
+class ProductListSerializer(serializers.ModelSerializer):
+    category = serializers.StringRelatedField()
+
+    class Meta:
+        fields = (
+            'category',
+            'code',
+            'name',
+            'price',
+            'quantity'
+        )
+        model = Product

@@ -12,5 +12,6 @@ urlpatterns = [
 
     url(r'^', include(router.urls, namespace="category")),
     url(r'^product/', product_views.ProductAPI.as_view(), name='product'),
+    url(r'^product-listing/', product_views.ProductListingAPI.as_view(), name='product-listing'),
 
 ]

@@ -2,6 +2,7 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView
 from data.models import Product, Category
 from django.db import transaction, IntegrityError
 from . import serializers
@@ -41,3 +42,10 @@ class ProductAPI(APIView):
         except:
             return Response({"status": False, "message": "Internal Server Error", "data": None},
                             status == status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+class ProductListingAPI(ListAPIView):
+    permission_classes = (AllowAny,)
+    queryset = Product.objects.all()
+    serializer_class = serializers.ProductListSerializer
