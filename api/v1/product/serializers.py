@@ -23,11 +23,5 @@ class ProductListSerializer(serializers.ModelSerializer):
     category = serializers.StringRelatedField()
 
     class Meta:
-        fields = (
-            'category',
-            'code',
-            'name',
-            'price',
-            'quantity'
-        )
+        fields = "__all__"
         model = Product
